@@ -192,7 +192,10 @@ REM -- Interactive path
 
         echo.
         echo   ImageMagick was not found at "%IM_DIR%"
-        echo   Set IM_DIR in the Data section near the top of this file.
+        echo   You must point this file to ImageMagick before it can run.
+        echo   Open this file in a text editor. In the Data section near the top,
+        echo   set IM_DIR to the folder that holds magick.exe.
+        echo   ImageMagick home page: http://www.imagemagick.org/
         echo.
         set "EXITCODE=2"
         pause
