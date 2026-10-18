@@ -1,5 +1,7 @@
 # Clean and Straighten Scans
 
+![From Messy Scans to Clean Documents](docs/From%20Messy%20Scans%20to%20Clean%20Documents.png)
+
 A Windows batch file that cleans, un-tilts, and closely crops PNG scans of documents. It uses ImageMagick for all image work.
 
 Scanner glass residue, adhesive, and paper dust leave dirt in a scan. Placing the paper on the glass leaves it slightly tilted. This file fixes both, then crops the result to the real content.
