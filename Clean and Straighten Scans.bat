@@ -1,7 +1,7 @@
 @echo off
 
 REM Clean and Straighten Scans.bat
-REM (c) Fred Thompson
+REM (c) 2026 Fred Thompson
 REM
 REM PURPOSE:      Cleans and un-tilts PNG scans of documents, then crops them closely to the real
 REM               content. Near-white pixels become white. Small stray specks, including the pale
@@ -25,6 +25,10 @@ REM               Each result is built in the temp folder and moved beside its s
 REM               success.
 REM RISK:         LOW. A source is never changed or deleted. Nothing this script writes replaces an
 REM               existing file. The only files it removes are its own temp result and roots file.
+REM LIMIT:        A pale mark narrower than twice SPECK_RADIUS plus one pixels (9 by default) is
+REM               removed as a speck when it sits away from darker content. That can include a
+REM               thin pale line or a small pale detail you want. See Known limits in the README.
+REM               Check the first results from a new kind of scan before running a large batch.
 REM RESET PATH:   Delete the generated -clean.png files.
 REM
 REM NAMING:       "<base>-clean.png", saved beside the source.
