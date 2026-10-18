@@ -42,11 +42,23 @@ All settings are in the Data section at the top of the file.
 | --- | --- | --- |
 | `IM_DIR` | `C:\Portable\- Linked\Graphics\ImageMagick\Q16 x64` | Folder that holds `magick.exe` |
 | `LIGHT_PCT` | 90 | A pixel whose darkest channel is at least this percent of 255 counts as near-white. 90 is 230 |
-| `PALE_PCT` | 67 | Pixels whose darkest channel is below this percent of 255 are content and are never removed as specks. 67 is 171 |
+| `PALE_PCT` | 67 | A pixel whose red and green are both at least this percent of 255 is pale enough to be a speck. 67 is 171 |
+| `FLOOR_PCT` | 55 | A pixel whose darkest channel is below this percent of 255 is content and is never a speck. 55 is 140 |
 | `PROTECT_RADIUS` | 3 | Pale pixels within this many pixels of content are protected from speck removal |
 | `SPECK_RADIUS` | 4 | Light specks narrower than twice this radius, plus one, are made white |
 | `DESKEW_PCT` | 40 | Share of the image the tilt search looks at, in percent |
 | `MARGIN` | 8 | White border left around the cropped result, in pixels |
+
+## Known limits
+
+The speck test looks at color and width. It can't tell a speck from a small detail you want.
+
+- A pale mark narrower than 9 pixels is removed when it sits away from darker content. That includes thin pale yellow lines, small pale yellow marks, and faint dots. Width is the only size test. There is no shape test.
+- Pale detail within `PROTECT_RADIUS` pixels of darker or colored content is protected. Isolated pale detail is not.
+- Dark and colored content is never removed as a speck. Only pale pixels are candidates.
+- To keep more, lower `SPECK_RADIUS`. To protect more around content, raise `PROTECT_RADIUS`. Both trade cleaning for safety.
+- Check the first results from any new kind of scan before running a large batch.
+- The source is never changed. A bad result costs one `-clean` file. Delete it, change a setting, and run again.
 
 ## Line endings
 
